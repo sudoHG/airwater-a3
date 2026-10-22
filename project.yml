@@ -1,0 +1,37 @@
+name: AirwaterProbe
+options:
+  deploymentTarget:
+    iOS: "16.0"
+settings:
+  base:
+    PRODUCT_BUNDLE_IDENTIFIER: com.sudohg.airwaterprobe
+    SWIFT_VERSION: "5.0"
+    TARGETED_DEVICE_FAMILY: "1"
+    MARKETING_VERSION: "0.1"
+    CURRENT_PROJECT_VERSION: "7"
+targets:
+  AirwaterProbe:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources
+      - path: Resources
+        buildPhase: resources
+    info:
+      path: .build/Info.plist
+      properties:
+        CFBundleDisplayName: A3连接诊断
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UILaunchScreen: {}
+        NSLocalNetworkUsageDescription: 与您选择的 A3 加湿器进行本地通信。
+        NSBluetoothAlwaysUsageDescription: 发现您选择的 A3，并通过蓝牙将其连接到此手机的个人热点。
+        CFBundleURLTypes:
+          - CFBundleURLName: $(PRODUCT_BUNDLE_IDENTIFIER).shortcut
+            CFBundleURLSchemes:
+              - a3local
+    settings:
+      base:
+        CODE_SIGN_STYLE: Automatic
+    scheme:
+      gatherCoverageData: false
