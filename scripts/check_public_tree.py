@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 FORBIDDEN_SUFFIXES = {".apk", ".ipa", ".pcap", ".pcapng", ".bin", ".p12", ".p8", ".pem",
                       ".key", ".mobileprovision", ".shortcut", ".zip", ".log"}
 FORBIDDEN_PARTS = {"xcuserdata", ".derivedData", ".build", "实机记录", "原始资料", "静态分析"}
+REVIEWED_IMAGES = {"docs/images/a3-connected.png"}
 PATTERNS = [re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
             re.compile(r"gh[pousr]_[A-Za-z0-9]{20,}"),
             re.compile(r"github_pat_[A-Za-z0-9_]{20,}"),
@@ -35,6 +36,11 @@ def main():
         if not path.is_file():
             errors.append(f"{name}: missing file")
             continue
+        if name in REVIEWED_IMAGES:
+            data = path.read_bytes()
+            if not data.startswith(b"\x89PNG\r\n\x1a\n") or not data.endswith(b"\x00\x00\x00\x00IEND\xaeB`\x82"):
+                errors.append(f"{name}: expected a reviewed PNG screenshot")
+            continue
         try:
             content = path.read_text(encoding="utf-8")
         except UnicodeDecodeError:
@@ -49,7 +55,9 @@ def main():
             except Exception as error:
                 errors.append(f"{name}: invalid property list: {type(error).__name__}")
         if path.suffix == ".md":
-            for link in re.findall(r"\]\(([^)]+)\)", content):
+            links = re.findall(r"\]\(([^)]+)\)", content)
+            links += re.findall(r'(?:src|href)="([^"]+)"', content)
+            for link in links:
                 if "://" in link or link.startswith(("#", "mailto:")):
                     continue
                 target = link.split("#", 1)[0]
@@ -72,7 +80,7 @@ def main():
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
-    print(f"PASS: {len(names)} publishable text files; plist, template, relative links and basic secret patterns checked.")
+    print(f"PASS: {len(names)} publishable files; reviewed PNGs, plist, template, relative links and basic secret patterns checked.")
     print("This is a bounded publication check, not a complete credential scan or hardware test.")
     return 0
 

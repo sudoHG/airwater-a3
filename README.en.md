@@ -4,17 +4,22 @@
 
 [简体中文](README.md) · [Build and sign](docs/BUILD.md) · [Protocol](docs/PROTOCOL.md) · [Security](SECURITY.md)
 
-## Status
+## What the app does
 
-| Area | Status |
-| --- | --- |
-| Basic on/off, state readback, reconnect after app relaunch | Tested on one device on 2026-09-27 |
-| Shortcut-assisted reconnect | Succeeded twice on one iPhone 17 Pro Max running iOS 27.0 on 2026-09-29 |
-| Mode and fan-speed controls | Normal operation has not been verified |
-| Target humidity | Read-only |
-| Other A3 firmware, iPhone models, and OS versions | Not verified |
+- **Power control:** Turn the A3 on or off and confirm its reported state. Tested on one A3 on 2026-09-27, including reconnecting after an app relaunch.
+- **Device status:** View power, onboard humidity, an online external sensor's humidity, target humidity, and low-water protection. Target humidity is read-only.
+- **Bluetooth setup:** Find nearby A3 devices and send the phone's hotspot name and password to the selected unit, including when changing hotspots. The provisioning flow is implemented; compatibility across devices and firmware remains unverified.
+- **Shortcut-assisted reconnect:** After provisioning and adding the Shortcut, tap the connection button to prepare the hotspot connection and return to the control page. A manual connection path is also available. Reconnection succeeded twice on one iPhone 17 Pro Max running iOS 27.0 on 2026-09-29.
+- **Mode and fan speed:** Controls for manual, automatic, and sleep modes, plus 0–100% manual fan speed, disabled during low-water protection. **Normal operation has not been verified.**
+- **Connection diagnostics:** View connection events and client count, and request the current device state to help troubleshoot connectivity.
 
-These are limited tests on specific hardware, not a compatibility guarantee or full feature acceptance. Each control session lasts about 10 minutes and requires the app to remain in the foreground. This is not an always-on background service.
+These are limited tests on specific hardware, not a compatibility guarantee or full feature acceptance. Other A3 firmware, iPhone models, and OS versions remain unverified. Each control session lasts about 10 minutes and requires the app to remain in the foreground. This is not an always-on background service.
+
+## Device screenshot
+
+<a href="docs/images/a3-connected.png"><img src="docs/images/a3-connected.png" alt="AirWater A3 on an iPhone: connected with power off, humidity readings and low-water protection displayed, mode and fan controls disabled" width="360"></a>
+
+Captured on an iPhone on 2026-09-29; click for full resolution. The A3 was connected, powered off, and reporting low-water protection, so mode and fan controls are disabled. This shows actual state readback, not verified humidification or fan adjustment. Only file metadata was removed; the UI image is unchanged. The app interface is currently in Chinese.
 
 ## How it works
 
