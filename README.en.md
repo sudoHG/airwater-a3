@@ -6,14 +6,12 @@
 
 ## What the app does
 
-| Feature | What you can do in the app | Validation scope |
-| --- | --- | --- |
-| Power control | Turn the A3 on or off and confirm its reported state | Tested on one A3 on 2026-09-27, including reconnecting after an app relaunch |
-| Device status | View power, onboard humidity, an online external sensor's humidity, target humidity, and low-water protection | These readings appear in the device screenshot below; target humidity is read-only |
-| Bluetooth setup | Find nearby A3 devices and send the phone's hotspot name and password to the selected unit, including when changing hotspots | Provisioning flow implemented; compatibility across devices and firmware remains unverified |
-| Shortcut-assisted reconnect | After provisioning and adding the Shortcut, tap the connection button to prepare the hotspot connection and return to the control page | Succeeded twice on one iPhone 17 Pro Max running iOS 27.0 on 2026-09-29; a manual connection path is also available |
-| Mode and fan speed | Controls for manual, automatic, and sleep modes, plus 0–100% manual fan speed; disabled during low-water protection | Normal operation has not been verified |
-| Connection diagnostics | View connection events and client count, and request the current device state | Helps troubleshoot connectivity; it does not establish that the appliance is operating normally |
+- **Power control:** Turn the A3 on or off and confirm its reported state. Tested on one A3 on 2026-09-27, including reconnecting after an app relaunch.
+- **Device status:** View power, onboard humidity, an online external sensor's humidity, target humidity, and low-water protection. Target humidity is read-only.
+- **Bluetooth setup:** Find nearby A3 devices and send the phone's hotspot name and password to the selected unit, including when changing hotspots. The provisioning flow is implemented; compatibility across devices and firmware remains unverified.
+- **Shortcut-assisted reconnect:** After provisioning and adding the Shortcut, tap the connection button to prepare the hotspot connection and return to the control page. A manual connection path is also available. Reconnection succeeded twice on one iPhone 17 Pro Max running iOS 27.0 on 2026-09-29.
+- **Mode and fan speed:** Controls for manual, automatic, and sleep modes, plus 0–100% manual fan speed, disabled during low-water protection. **Normal operation has not been verified.**
+- **Connection diagnostics:** View connection events and client count, and request the current device state to help troubleshoot connectivity.
 
 These are limited tests on specific hardware, not a compatibility guarantee or full feature acceptance. Other A3 firmware, iPhone models, and OS versions remain unverified. Each control session lasts about 10 minutes and requires the app to remain in the foreground. This is not an always-on background service.
 
